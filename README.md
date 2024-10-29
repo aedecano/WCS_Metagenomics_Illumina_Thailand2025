@@ -28,7 +28,7 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
    - **What It Does**: FastQC generates quality metrics and HTML reports, including GC content, read length distribution, and base quality scores.
    - **Output**: HTML reports in the `fastqc_output` directory. Open these to check for any quality issues.
 
-2. **Trim Reads Using Fastp**:
+2. **Clean Reads Using Fastp**:
    ``` 
    fastp -i raw_reads/sample_R1.fastq -I raw_reads/sample_R2.fastq    -o trimmed_sample_R1.fastq -O trimmed_sample_R2.fastq    -h fastp_report.html -j fastp_report.json --length_required 50
    ```
