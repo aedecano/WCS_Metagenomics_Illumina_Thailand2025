@@ -15,10 +15,10 @@ To complete this tutorial, you need:
 
 ## Step 1: Quality Control of Illumina Reads
 
-### Introduction
+ 
 Quality control ensures your Illumina reads are suitable for assembly. **FastQC** will identify quality issues, and **Fastp** will trim low-quality bases and adapters.
 
-### Commands and Explanation
+ 
 
 1. **Run FastQC to Assess Read Quality**:
    ``` 
@@ -44,10 +44,10 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
 
 ## Step 2: Metagenome Assembly with metaSPAdes
 
-### Introduction
+ 
 **metaSPAdes** is optimized for metagenomic data and assembles reads into contigs, reconstructing genome fragments from complex microbial communities.
 
-### Commands and Explanation
+ 
 
 1. **Run metaSPAdes**:
    ``` 
@@ -63,10 +63,10 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
 
 ## Step 3: Binning the Contigs
 
-### Introduction
+ 
 Binning groups contigs into bins representing putative genomes. **MetaBAT2** performs binning based on sequence composition and read coverage.
 
-### Commands and Explanation
+ 
 
 1. **Run MetaBAT2**:
    ``` 
@@ -84,10 +84,10 @@ Binning groups contigs into bins representing putative genomes. **MetaBAT2** per
 
 ## Step 4: Quality Assessment of Bins
 
-### Introduction
+ 
 Use **CheckM** to evaluate the quality of binned genomes, assessing completeness and contamination based on conserved marker genes.
 
-### Commands and Explanation
+ 
 
 1. **Run CheckM**:
    ``` 
@@ -100,10 +100,10 @@ Use **CheckM** to evaluate the quality of binned genomes, assessing completeness
 
 ## Step 5: Taxonomic Classification of Contigs
 
-### Introduction
+ 
 Classify contigs to identify their taxonomic origin with **Kraken2**, which compares contigs to a taxonomic database.
 
-### Commands and Explanation
+ 
 
 1. **Run Kraken2**:
    ``` 
@@ -117,10 +117,10 @@ Classify contigs to identify their taxonomic origin with **Kraken2**, which comp
 
 ## Step 6: Genome Annotation
 
-### Introduction
+ 
 Annotate each bin to identify genes and other genomic features using **Prokka**.
 
-### Commands and Explanation
+ 
 
 1. **Run Prokka for Genome Annotation**:
    ``` 
@@ -134,10 +134,10 @@ Annotate each bin to identify genes and other genomic features using **Prokka**.
 
 ## Step 7: AMR Prediction
 
-### Introduction
+ 
 Identify antimicrobial resistance (AMR) genes using **ABRicate**, which screens genomes against known AMR gene databases.
 
-### Commands and Explanation
+ 
 
 1. **Run ABRicate for AMR Prediction**:
    ``` 
@@ -151,7 +151,7 @@ Identify antimicrobial resistance (AMR) genes using **ABRicate**, which screens 
 
 ## Step 8: Visualization of Taxonomy with Pavian or Krona
 
-### Introduction
+ 
 Visualize taxonomic classifications interactively using **Pavian** or **Krona**:
 
 - **Pavian** provides an interactive web-based interface.
