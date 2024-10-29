@@ -87,7 +87,6 @@ Binning groups contigs into bins representing putative genomes. **MetaBAT2** per
  
 Use **CheckM** to evaluate the quality of binned genomes, assessing completeness and contamination based on conserved marker genes.
 
- 
 
 1. **Run CheckM**:
    ``` 
