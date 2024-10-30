@@ -13,6 +13,11 @@ To complete this tutorial, you need:
 - **Basic Linux command-line** knowledge.
 - **Installed tools**: FastQC, Fastp, metaSPAdes, MetaBAT2, Kraken2, CheckM, Prokka, Abricate (for AMR prediction), and Pavian or Krona for visualization.
 
+### Dataset
+
+Downsampled metagenome
+
+
 ## Step 1: Quality Control of Illumina Reads
 
  
