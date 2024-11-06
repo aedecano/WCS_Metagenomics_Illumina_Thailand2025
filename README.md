@@ -11,7 +11,7 @@ This tutorial provides a step-by-step command-line workflow for analyzing bacter
 ### Prerequisites
 To complete this tutorial, you need:
 - **Basic Linux command-line** knowledge.
-- **Installed tools**: FastQC, Fastp, metaSPAdes, MetaBAT2, Kraken2, CheckM, Prokka, Abricate (for AMR prediction), and Pavian or Krona for visualization.
+- **Installed tools**: FastQC, Fastp, seqtk, Bbmap, metaSPAdes, MetaBAT2, Kraken2, CheckM, Prokka, Abricate (for AMR prediction), and Pavian or Krona for visualization.
 
 ### Dataset
 
