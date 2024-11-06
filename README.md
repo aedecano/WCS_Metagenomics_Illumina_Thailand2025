@@ -47,7 +47,26 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
    Rerun FastQC on `trimmed_sample_R1.fastq` and `trimmed_sample_R2.fastq` to confirm improvements.
 
 
-## Step 2: Metagenome Assembly with metaSPAdes
+## Step 2: Downsample Reads
+Reduce the number of reads in the dataset while preserving the diversity of the sample.
+
+Use seqtk sample for random subsampling of reads to a desired percentage or absolute number.
+
+```
+seqtk sample -s100 input.fastq 0.1 > downsampled.fastq
+
+#-s100 specifies a random seed for reproducibility.
+#0.1 specifies 10% of the total reads (adjust according to needs).
+```
+
+Use bbnorm.sh in BBMap for read normalization, which reduces redundancy while keeping unique reads.
+```
+bbnorm.sh in=input.fastq out=downsampled.fastq target=20 min=2
+
+# target=20 controls coverage normalization depth (can be adjusted based on data).
+```
+
+## Step 3:  Metagenome Assembly with metaSPAdes
 
  
 **metaSPAdes** is optimized for metagenomic data and assembles reads into contigs, reconstructing genome fragments from complex microbial communities.
