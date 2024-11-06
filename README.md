@@ -50,7 +50,7 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
 ## Step 2: Downsample Reads
 Reduce the number of reads in the dataset while preserving the diversity of the sample.
 
-Use seqtk sample for random subsampling of reads to a desired percentage or absolute number.
+Use **seqtk** sample for random subsampling of reads to a desired percentage or absolute number.
 
 ```
 seqtk sample -s100 input.fastq 0.1 > downsampled.fastq
@@ -59,7 +59,7 @@ seqtk sample -s100 input.fastq 0.1 > downsampled.fastq
 #0.1 specifies 10% of the total reads (adjust according to needs).
 ```
 
-Use bbnorm.sh in BBMap for read normalization, which reduces redundancy while keeping unique reads.
+Use **bbnorm.sh** in BBMap for read normalization, which reduces redundancy while keeping unique reads.
 ```
 bbnorm.sh in=input.fastq out=downsampled.fastq target=20 min=2
 
@@ -85,7 +85,7 @@ bbnorm.sh in=input.fastq out=downsampled.fastq target=20 min=2
    Inspect `contigs.fasta` in `metaspades_output/` to check contig lengths and quality.
 
 
-## Step 3: Binning the Contigs
+## Step 4: Binning the Contigs
 
  
 Binning groups contigs into bins representing putative genomes. **MetaBAT2** performs binning based on sequence composition and read coverage.
@@ -106,7 +106,7 @@ Binning groups contigs into bins representing putative genomes. **MetaBAT2** per
 
 
 
-## Step 4: Quality Assessment of Bins
+## Step 5: Quality Assessment of Bins
 
  
 Use **CheckM** to evaluate the quality of binned genomes, assessing completeness and contamination based on conserved marker genes.
@@ -121,7 +121,7 @@ Use **CheckM** to evaluate the quality of binned genomes, assessing completeness
    - **Interpret Results**: Bins with >90% completeness and <5% contamination are considered high-quality.
 
 
-## Step 5: Taxonomic Classification of Contigs
+## Step 6: Taxonomic Classification of Contigs
 
  
 Classify contigs to identify their taxonomic origin with **Kraken2**, which compares contigs to a taxonomic database.
@@ -138,7 +138,7 @@ Classify contigs to identify their taxonomic origin with **Kraken2**, which comp
 
 
 
-## Step 6: Genome Annotation
+## Step 7: Genome Annotation
 
  
 Annotate each bin to identify genes and other genomic features using **Prokka**.
@@ -155,7 +155,7 @@ Annotate each bin to identify genes and other genomic features using **Prokka**.
 
 
 
-## Step 7: AMR Prediction
+## Step 8: AMR Prediction
 
  
 Identify antimicrobial resistance (AMR) genes using **ABRicate**, which screens genomes against known AMR gene databases.
@@ -172,7 +172,7 @@ Identify antimicrobial resistance (AMR) genes using **ABRicate**, which screens 
 
 
 
-## Step 8: Visualization of Taxonomy with Pavian or Krona
+## Step 9: Visualization of Taxonomy with Pavian or Krona
 
  
 Visualize taxonomic classifications interactively using **Pavian** or **Krona**:
