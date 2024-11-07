@@ -1,6 +1,6 @@
 # Tutorial: Metagenomic Analysis of Bacterial Genomes Using Illumina Short-Read Data
 
-### Objective
+### Learning Objectives
 This tutorial provides a step-by-step command-line workflow for analyzing bacterial genomes from Illumina short-read metagenomic data. By following these steps, you’ll be able to:
 1. Conduct quality control on Illumina reads.
 2. Assemble short reads into contigs using **metaSPAdes**.
@@ -15,7 +15,7 @@ To complete this tutorial, you need:
 
 ### Dataset
 
-Downsampled metagenome
+c/o Fahad K.
 
 
 ## Step 1: Quality Control of Illumina Reads
