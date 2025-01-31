@@ -35,7 +35,7 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
 
 1. **Run FastQC to Assess Read Quality**:
    ``` 
-   fastqc raw_reads/*.fastq -o fastqc_output/
+   fastqc raw_reads/*.fastq.gz -o fastqc_output/
    ```
 
    - **What It Does**: FastQC generates quality metrics and HTML reports, including GC content, read length distribution, and base quality scores.
@@ -58,16 +58,26 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
       conda activate --satck amr # to access packages from the amr env
       ```
       ```
-      # Run Hostile on unpaired short reads
-      hostile clean --fastq1 short.r1.fq.gz -o - > clean.short.r1.fq 
-      
+      # Run Hostile on paired short reads
+      hostile clean --fastq1 SRR14297772_cpe107_1.fastq.gz --fastq2 SRR14297772_cpe107_2.fastq.gz -o - > SRR14297772_cpe107.interleaved.fastq
+      ```
+      ```
+      # Bin interleaved fastq files into clean.fastq1 and clean.fatq2 using seqtk
+      seqtk seq -1 SRR14297772_cpe107.interleaved.fastq > clean.SRR14297772_cpe107_1.fastq
+      seqtk seq -2 SRR14297772_cpe107.interleaved.fastq > clean.SRR14297772_cpe107_2.fastq
+      ```
+      ```
+      #Compress fastq files
+      gzip SRR14297772_cpe107.interleaved.fastq
+      gzip clean.SRR14297772_cpe107_1.fastq
+      gzip clean.SRR14297772_cpe107_2.fastq
       ```
 
 3. **Verify Trimming Results**:
-   Rerun FastQC on `trimmed_sample_R1.fastq` and `trimmed_sample_R2.fastq` to confirm improvements.
+   Rerun FastQC on clean fastq to confirm improvements.
 
 
-## Step 2: Downsample Reads
+## Step 2: Downsample Reads (Optional)
 Reduce the number of reads in the dataset while preserving the diversity of the sample.
 
 Use **seqtk** sample for random subsampling of reads to a desired percentage or absolute number.
@@ -91,11 +101,10 @@ bbnorm.sh in=input.fastq out=downsampled.fastq target=20 min=2
  
 **metaSPAdes** is optimized for metagenomic data and assembles reads into contigs, reconstructing genome fragments from complex microbial communities.
 
- 
 
 1. **Run metaSPAdes**:
    ``` 
-   metaspades.py -1 trimmed_sample_R1.fastq -2 trimmed_sample_R2.fastq    -o metaspades_output/
+   metaspades.py -1 trimmed_sample_R1.fastq -2 trimmed_sample_R2.fastq    -o metaspades_output/ --only-assembler
    ```
 
    - **What It Does**: metaSPAdes assembles contigs by building a de Bruijn graph adapted for metagenomic data.
@@ -110,7 +119,6 @@ bbnorm.sh in=input.fastq out=downsampled.fastq target=20 min=2
  
 Binning groups contigs into bins representing putative genomes. **MetaBAT2** performs binning based on sequence composition and read coverage.
 
- 
 
 1. **Run MetaBAT2**:
    ``` 
@@ -145,18 +153,19 @@ Use **CheckM** to evaluate the quality of binned genomes, assessing completeness
 
  
 Classify contigs to identify their taxonomic origin with **Kraken2**, which compares contigs to a taxonomic database.
-
  
 
-1. **Run Kraken2**:
+1. **Run Kraken2 to identify microbial diversity**: 
    ``` 
    kraken2 --db kraken2_db --threads 8 --output kraken_output.txt --report kraken_report.txt metaspades_output/contigs.fasta
    ```
 
    - **What It Does**: Kraken2 assigns taxonomic classifications by matching sequences against a reference database.
    - **Output**: Results are saved in `kraken_output.txt` with a summary report in `kraken_report.txt`.
-
-
+   - Alternatively, run Kraken 2 on the clean reads.
+     ```
+     kraken2 --db kraken2_db SRR14297772_cpe107.interleaved.fastq
+     ```
 
 ## Step 7: Genome Annotation
 
