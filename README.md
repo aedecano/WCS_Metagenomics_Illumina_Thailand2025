@@ -55,7 +55,7 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
       # Create and activate a conda env 
       conda create -y -n hostile -c conda-forge -c bioconda hostile
       conda activate hostile
-      conda activate --satck amr # to access packages from the amr env
+      conda activate --stack amr # to access packages from the amr env
       ```
       ```
       # Run Hostile on paired short reads
