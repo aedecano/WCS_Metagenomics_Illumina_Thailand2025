@@ -33,15 +33,27 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
    - **What It Does**: FastQC generates quality metrics and HTML reports, including GC content, read length distribution, and base quality scores.
    - **Output**: HTML reports in the `fastqc_output` directory. Open these to check for any quality issues.
 
-2. **Clean Reads Using Fastp**:
+2. **Clean Reads Using Fastp and Hostile**:
    ``` 
    fastp -i raw_reads/sample_R1.fastq -I raw_reads/sample_R2.fastq    -o trimmed_sample_R1.fastq -O trimmed_sample_R2.fastq    -h fastp_report.html -j fastp_report.json --length_required 50
    ```
 
-   - **What It Does**: Fastp removes adapters, trims low-quality bases, and discards reads shorter than 50 bp.
-   - **Key Options**:
+   - **What It Does**: Fastp removes adapters, trims low-quality bases, and discards reads shorter than 50 bp. Hostile gets rid of host (mainly) human reads.
+   - **Key Options for Fastp**:
      - `-h` and `-j`: Generate HTML and JSON reports with trimming metrics.
      - `--length_required`: Discards reads shorter than 50 bp.
+   - **Hostile**: https://github.com/bede/hostile
+      ```
+      # Create and activate a conda env 
+      conda create -y -n hostile -c conda-forge -c bioconda hostile
+      conda activate hostile
+      conda activate --satck amr # to access packages from the amr env
+      ```
+      ```
+      # Run Hostile on unpaired short reads
+      hostile clean --fastq1 short.r1.fq.gz -o - > clean.short.r1.fq 
+      
+      ```
 
 3. **Verify Trimming Results**:
    Rerun FastQC on `trimmed_sample_R1.fastq` and `trimmed_sample_R2.fastq` to confirm improvements.
