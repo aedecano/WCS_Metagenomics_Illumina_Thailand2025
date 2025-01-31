@@ -214,6 +214,7 @@ Visualize taxonomic classifications interactively using **Pavian** or **Krona**:
 1. **Set Up Pavian for Visualization**:
    ``` 
    pavian server
+   # or upload the kraken reports on the web server: https://shiny.hiplot.cn/pavian/
    ```
 
    - **What It Does**: Pavian launches a local server for visualizing taxonomic classifications in your web browser.
