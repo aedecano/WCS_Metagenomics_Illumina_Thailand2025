@@ -46,6 +46,11 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
    ``` 
    fastp -i raw_reads/sample_R1.fastq -I raw_reads/sample_R2.fastq    -o trimmed_sample_R1.fastq -O trimmed_sample_R2.fastq    -h fastp_report.html -j fastp_report.json --length_required 50
    ```
+   
+   ```
+   # We will use the spiked pair
+   fastp -i SRR14297772_cpe107_1.fastq.gz -I SRR14297772_cpe107_2.fastq.gz    -o trimmed_SRR14297772_cpe107_1.fastq.gz -O trimmed_SRR14297772_cpe107_2.fastq.gz -h fastp_report.html -j fastp_report.json --length_required 50 
+   ```
 
    - **What It Does**: Fastp removes adapters, trims low-quality bases, and discards reads shorter than 50 bp. Hostile gets rid of host (mainly) human reads.
    - **Key Options for Fastp**:
@@ -63,19 +68,19 @@ Quality control ensures your Illumina reads are suitable for assembly. **FastQC*
       hostile clean --fastq1 SRR14297772_cpe107_1.fastq.gz --fastq2 SRR14297772_cpe107_2.fastq.gz -o - > SRR14297772_cpe107.interleaved.fastq
       ```
       ```
-      # Bin interleaved fastq files into clean.fastq1 and clean.fatq2 using seqtk
+      # Bin interleaved fastq files into clean.fastq1 and clean.fastq2 using seqtk
       seqtk seq -1 SRR14297772_cpe107.interleaved.fastq > clean.SRR14297772_cpe107_1.fastq
       seqtk seq -2 SRR14297772_cpe107.interleaved.fastq > clean.SRR14297772_cpe107_2.fastq
       ```
       ```
-      #Compress fastq files
+      #Compress all fastq files
       gzip SRR14297772_cpe107.interleaved.fastq
       gzip clean.SRR14297772_cpe107_1.fastq
       gzip clean.SRR14297772_cpe107_2.fastq
       ```
 
 3. **Verify Trimming Results**:
-   Rerun FastQC on clean fastq to confirm improvements.
+   Rerun FastQC and run Multiqc on clean fastq files to confirm improvements. 
 
 
 ## Step 2: Downsample Reads (Optional)
