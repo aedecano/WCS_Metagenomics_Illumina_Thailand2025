@@ -118,7 +118,7 @@ Binning groups contigs into bins representing putative genomes. **MetaBAT2** per
 
 
 
-## Step 5: Quality Assessment of Bins
+## Step 5: Quality Assessment of Bins (Optional)
 
  
 Use **CheckM** to evaluate the quality of binned genomes, assessing completeness and contamination based on conserved marker genes.
