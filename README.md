@@ -150,7 +150,7 @@ Use **CheckM** to evaluate the quality of binned genomes, assessing completeness
    - **Interpret Results**: Bins with >90% completeness and <5% contamination are considered high-quality.
 
 
-## Step 6: Taxonomic Classification of Contigs
+## Step 6: Taxonomic Classification of Contigs (MAGs) and/or Reads
 
  
 Classify contigs to identify their taxonomic origin with **Kraken2**, which compares contigs to a taxonomic database.
