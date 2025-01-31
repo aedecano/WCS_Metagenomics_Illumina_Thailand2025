@@ -15,7 +15,15 @@ To complete this tutorial, you need:
 
 ### Dataset
 
-c/o Fahad K.
+Raw files were grabbed from Guo, X., Tang, N., Lei, H., Fang, Q., Liu, L., Zhou, Q., & Song, C. (2021). Metagenomic Analysis of Antibiotic Resistance Genes in Untreated Wastewater From Three Different Hospitals. Frontiers in microbiology, 12, 709051. https://doi.org/10.3389/fmicb.2021.709051. Selected ones were spiked with CPE plasmids.
+
+  ```
+  # Raw
+  wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR142/072/SRR14297772/SRR14297772_1.fastq.gz
+  wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR142/072/SRR14297772/SRR14297772_2.fastq.gz
+  # Spiked
+  c/o Aarthi and Arun
+  ```
 
 
 ## Step 1: Quality Control of Illumina Reads
